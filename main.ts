@@ -8,9 +8,14 @@ import { mkdirSync, writeFileSync } from "node:fs";
 const LINE =
   "Error 0xE3: paper jam in tray 2. I quit. My replacement arrives Tuesday — and it jams too.";
 
-if (LINE.length < 1 || LINE.length > 240 || LINE.trim().length === 0) {
+if (
+  LINE.length < 1 ||
+  LINE.length > 240 ||
+  LINE.trim().length === 0 ||
+  LINE.includes("\n")
+) {
   throw new Error(
-    `entry line must be 1-240 non-blank characters, got ${LINE.length}`,
+    `entry line must be a single line of 1-240 non-blank characters, got ${LINE.length}`,
   );
 }
 
